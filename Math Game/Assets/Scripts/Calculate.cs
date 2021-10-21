@@ -219,8 +219,10 @@ public class Calculate : MonoBehaviour
             ScoreBoxClone.Remove(last5);
             Destroy(last5);
             Location = 0;
-           // Tick.GetComponent<Renderer>().enabled = false;
-
+            if (Location == 1)
+            {
+                Tick.GetComponent<Renderer>().enabled = false;
+            }
         }
     }
     public void InCorrect()
