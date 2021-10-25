@@ -9,10 +9,11 @@ namespace EasyUI.Dialogs {
 public class Dialog
 {
     public string Title = "Hint";
-    public string Message = "Select the correct answer egg.\n You win if you get 5 answers correct.\n You lose it you get 5 wrong.";
+    public string Message = "Select the correct answer egg.\n" +
+            "You win if you get 5 answers correct.\n" +
+            "You lose it you get 5 answers wrong.\n" +
+            "Click 'Back' button to play another game.";
 }
-
-
     public class DialogUI : MonoBehaviour
     {
         [SerializeField] GameObject canvasHint;
@@ -29,8 +30,6 @@ public class Dialog
             Instance = this;
             closeUIButton.onClick.RemoveAllListeners();
             closeUIButton.onClick.AddListener(Hide);
-
-
         }
 
         public DialogUI SetTitle(string title)
@@ -50,9 +49,6 @@ public class Dialog
             canvasHint.SetActive(true);
             titleUIText.text = dialog.Title;
             messageUIText.text = dialog.Message;
-
-
-
         }
         public void Hide()
         {

@@ -285,8 +285,6 @@
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Addition.cs"
-"Assets/Scripts/Answer Correct.cs"
-"Assets/Scripts/Answer Incorrect.cs"
 "Assets/Scripts/Calculate.cs"
 "Assets/Scripts/DialogUI.cs"
 "Assets/Scripts/Division.cs"
