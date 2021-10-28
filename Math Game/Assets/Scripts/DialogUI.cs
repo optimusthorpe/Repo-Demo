@@ -8,7 +8,7 @@ namespace EasyUI.Dialogs {
 
 public class Dialog
 {
-    public string Title = "Hint";
+    public string Title = "Hint"; //Sets the dialog for the hint box
     public string Message = "Select the correct answer egg.\n" +
             "You win if you get 5 answers correct.\n" +
             "You lose it you get 5 answers wrong.\n" +

@@ -13,20 +13,20 @@ public class Calculate : MonoBehaviour
     public Text FirstNumber, SecondNumber, Symbol, Result, Answer1, Answer2, Answer3, CorrectBox;
     private string VarSymbol;
     public GameObject Canvas, Transparent, Tick, Cross, DeathBox, ScoreBox;
-    List<Object> ScoreBoxClone = new List<Object>();
-    List<Object> DeathBoxClone = new List<Object>();
+    List<Object> ScoreBoxClone = new List<Object>();//List for the correct answer tally
+    List<Object> DeathBoxClone = new List<Object>();//List for the incorrect answer tally
 
     // Start is called before the first frame update
     void Start()
     {
         Canvas.SetActive(false);
-        GameObject.Find("Main Camera").transform.position = new Vector3(-12.127f, 1.55f, -4.684f);  
-        DialogUI.Instance.SetTitle("Hint").SetMessage("Please help").Hide();
+        GameObject.Find("Main Camera").transform.position = new Vector3(-12.127f, 1.55f, -4.684f);  //Set the view to main camera
+        DialogUI.Instance.Hide();//Hide the hint dialog box
         StartCoroutine(ExampleCoroutine());
         Location = 0;
         LocationDeath = 1;
-        Tick.GetComponent<Renderer>().enabled = false;
-        Cross.GetComponent<Renderer>().enabled = false;
+        Tick.GetComponent<Renderer>().enabled = false; // Hide the tick on the operation screen
+        Cross.GetComponent<Renderer>().enabled = false; //Hide the cross the operation screen
     }
 
     // Update is called once per frame
@@ -59,7 +59,7 @@ public class Calculate : MonoBehaviour
         Debug.Log(" Function Division");
     }
 
-    public void calculateFn(string operation)
+    public void calculateFn(string operation) //Main calculation method for all operations
     {
         PrimeNum = Random.Range(1, 10);
         SecondNum = Random.Range(1, 10);
@@ -139,7 +139,7 @@ public class Calculate : MonoBehaviour
         }
     }
 
-    public void ReturnMenu()
+    public void ReturnMenu()//Back button
     {
         Canvas.SetActive(false);
         GameObject.Find("Main Camera").transform.position = new Vector3(-1.62f, 1.55f, -4.295f);
@@ -148,7 +148,7 @@ public class Calculate : MonoBehaviour
        
     }
 
-    public void Answer_1()
+    public void Answer_1()//Different answer eggs
     {
         if (Answer1.text == RequestFinal.ToString())
         {
@@ -184,7 +184,7 @@ public class Calculate : MonoBehaviour
         }
     }
 
-    public void Correct()
+    public void Correct()//The tally system for the correct answers
     {
         Debug.Log("Is correct");
         Location = Location + 1;
@@ -215,14 +215,12 @@ public class Calculate : MonoBehaviour
             ScoreBoxClone.Remove(last5);
             Destroy(last5);
             
-            WaitFor3();
-            //Tick.GetComponent<Renderer>().enabled = false;
             Location = 0;
             
         }
     }
 
-    public void InCorrect()
+    public void InCorrect() //The tally system for the incorrect answers
     {
         Debug.Log("Is incorrect");
         LocationDeath = LocationDeath + 1;
@@ -254,23 +252,14 @@ public class Calculate : MonoBehaviour
             DeathBoxClone.Remove(Last5);
             Destroy(Last5);
 
-            //WaitFor3();
-           // Cross.GetComponent<Renderer>().enabled = false;
             LocationDeath = 1;
-          
         }
     }
 
-    IEnumerator ExampleCoroutine()
+    IEnumerator ExampleCoroutine()//Sets a waiting timer
     {
         yield return new WaitForSeconds(1);
         CorrectBox.text = " ";
         calculateFn(VarSymbol);
-    }
-    IEnumerator WaitFor3()
-    {
-        yield return new WaitForSecondsRealtime(3);
-        Cross.GetComponent<Renderer>().enabled = false;
-        Tick.GetComponent<Renderer>().enabled = false;
     }
 }
